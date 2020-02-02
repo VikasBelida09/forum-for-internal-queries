@@ -41,10 +41,10 @@
       <div [attr.data-index]="i" class="media border p-3">
         <div style="display:flex">
           <div style="display: flex;flex-direction: column;padding-right: 10px;">
-            <i class="fa fa-chevron-circle-up" (click)="answerupvote(i)" style="font-size:36px"
+            <i class="fa fa-chevron-circle-up" (click)="answerupvote(i,answer.answerId)" style="font-size:36px"
               [style.color]="answerupvotecolor[i]"></i>
             <span style="padding-left: 10px;font-weight: bold;">{{answer.vote}}</span>
-            <i class="fa fa-chevron-circle-down" (click)="answerdownvote(i)" style="font-size:36px"
+            <i class="fa fa-chevron-circle-down" (click)="answerdownvote(i,answer.answerId)" style="font-size:36px"
               [style.color]="answerdownvotecolor[i]"></i>
           </div>
           <img

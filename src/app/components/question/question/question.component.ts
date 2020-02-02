@@ -17,7 +17,7 @@ export class QuestionComponent implements OnInit {
   upvotecolor="black"
   downvotecolor="black"
   answerupvotecolor=[]
-  answerdownvotecolor="black"
+  answerdownvotecolor=[]
   vote: number
   answervote:number
   constructor(public questionanswerservice:QuestionanswerService) {
@@ -47,19 +47,20 @@ export class QuestionComponent implements OnInit {
     this.downvotecolor="orange"
     this.upvotecolor="black"
   }
-  answerupvote(id: number)
+  answerupvote(id: number,ansid: number)
   {    
-    console.log(id) 
+    console.log(id,ansid) 
     this.answervote+=1;
     this.answerupvotecolor[id]="orange"
-    this.answerdownvotecolor="black"
+    this.answerdownvotecolor[id]="black"
 
   }
-  answerdownvote()
+  answerdownvote(id: number,ansid: number)
   {
+    console.log(id,ansid)
     this.answervote-=2;
-    this.answerdownvotecolor="orange"
-    //this.answerupvotecolor="black"
+    this.answerdownvotecolor[id]="orange"
+    this.answerupvotecolor[id]="black"
 
   }
   
