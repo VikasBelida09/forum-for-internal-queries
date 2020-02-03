@@ -4,17 +4,11 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class QuestionanswerService {
+export class HomeService {
   constructor(private http:HttpClient) { }
-  
-  getQuestionanswerById(Id)
+  viewQuestion(Id)
   {
     console.log("getquestion answer called");
-    return this.http.get("forum/questions/"+Id);
-  }
-
-  saveanswer()
-  {
-
+    return this.http.get("forum/viewques/"+Id);
   }
 }

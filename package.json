@@ -26,6 +26,8 @@
     "@ng-bootstrap/ng-bootstrap": "^5.2.1",
     "angular": "^1.7.9",
     "angular-bootstrap-md": "^8.8.2",
+    "angular-web-storage": "^7.0.0-beta.1",
+    "angular-webstorage-service": "^1.0.2",
     "angular5-social-login": "^1.0.9",
     "font-awesome": "^4.7.0",
     "rxjs": "^6.5.4",

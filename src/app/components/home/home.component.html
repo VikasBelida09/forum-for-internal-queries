@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+    <div class="container mt-3">
+        <h2>Top Questions</h2>
+        <div style="padding-top: 15px;"class="media border p-3" *ngFor="let question of questions[0]">
+            <div class="media-body" style="display: flex;"  (click)="viewquestion()" >
+                <div class="votes" style="font-size: 20px;font-weight: bold;padding-left: 10px;">
+                    <span>{{question.vote}}</span><br>
+                    <span>votes</span>
+                </div>
+                <div class="answers" style="font-size: 20px; font-weight: bold;padding-left: 10px;">
+                    <span>{{question.totalAnswers}}</span><br>
+                    <span>answers</span>
+                </div>
+                <!-- <h4>John Doe <small><i>Posted on February 19, 2016</i></small></h4> -->
+                <p style="font-size: 20px;padding-left: 10px;">{{question.questionValue}}<br/>
+                {{question.description}}</p>
+            </div>
+            <div style="display: flex;
+            flex-direction: column;">
+                <span style="font-size: 20px;">Asked By</span>
+                <span>{{question.empName}}</span>
+                <img src="img_avatar3.png" alt="John Doe" class="ml-3 mt-3 rounded-circle"
+                    style="padding-left: 10px;width:60px;">
+            </div>
+            <br />
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -3,12 +3,19 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { IndexComponent,NgbdModalContent } from './components/indexpage/index/index.component';
+import { IndexComponent } from './components/indexpage/index/index.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {SocialLoginModule, AuthServiceConfig,GoogleLoginProvider} from 'angular5-social-login';
-import { QuestionComponent } from './components/question/question/question.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
+import { QuestionComponent } from './components/question/question/question.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms'
+import { AngularWebStorageModule } from 'angular-web-storage';
+import { HomeComponent } from './components/home/home.component';
+import { IndexnavigationComponent } from './components/indexnavigation/indexnavigation.component';
+import {NgbdModalContent } from './components/indexnavigation/indexnavigation.component';
+import { AskquestionComponent } from './components/askquestion/askquestion.component';
+import { startsWithPipe } from './customstart.pipes';
+
 const config=new AuthServiceConfig([
   {
      id:GoogleLoginProvider.PROVIDER_ID,
@@ -23,9 +30,13 @@ const config=new AuthServiceConfig([
   declarations: [
     AppComponent,
     IndexComponent,
+    NavigationComponent,
     NgbdModalContent,
     QuestionComponent,
-    NavigationComponent,
+    HomeComponent,
+    IndexnavigationComponent,
+    AskquestionComponent,
+    startsWithPipe
     ],
       entryComponents: [NgbdModalContent],
   imports: [
@@ -35,7 +46,8 @@ const config=new AuthServiceConfig([
     NgbModule,
     SocialLoginModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularWebStorageModule,
   ],
   providers: [
     {
