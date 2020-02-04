@@ -15,6 +15,7 @@ import { IndexnavigationComponent } from './components/indexnavigation/indexnavi
 import {NgbdModalContent } from './components/indexnavigation/indexnavigation.component';
 import { AskquestionComponent } from './components/askquestion/askquestion.component';
 import { startsWithPipe } from './customstart.pipes';
+import { CategoryComponent } from './components/category/category.component';
 
 const config=new AuthServiceConfig([
   {
@@ -36,7 +37,8 @@ const config=new AuthServiceConfig([
     HomeComponent,
     IndexnavigationComponent,
     AskquestionComponent,
-    startsWithPipe
+    startsWithPipe,
+    CategoryComponent
     ],
       entryComponents: [NgbdModalContent],
   imports: [
@@ -48,6 +50,7 @@ const config=new AuthServiceConfig([
     FormsModule,
     ReactiveFormsModule,
     AngularWebStorageModule,
+    
   ],
   providers: [
     {

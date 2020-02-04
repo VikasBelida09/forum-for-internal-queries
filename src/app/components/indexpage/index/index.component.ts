@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {  SessionStorageService } from 'angular-web-storage';
 
 
 
@@ -8,5 +9,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./index.component.css']
 })
 export class IndexComponent {
-  constructor() { }
+  constructor(public session: SessionStorageService) {
+    if(this.session.get("3"))
+    {
+      this.session.set("3",false)
+      window.location.reload()
+    }
+   }
+ 
 }

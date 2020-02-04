@@ -1,8 +1,6 @@
 
-<div *ngIf="data[0].token!=undefined">
-<app-navigation ></app-navigation>
-</div>
-<div *ngIf="data[0].token==undefined">
-<app-indexnavigation ></app-indexnavigation>
-</div>
+
+<app-navigation *ngIf="data[0]" ></app-navigation>
+<app-indexnavigation *ngIf="!data[0]"></app-indexnavigation>
+
 <router-outlet></router-outlet>

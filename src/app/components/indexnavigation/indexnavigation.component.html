@@ -68,7 +68,7 @@
                     <img src="../../../assets/images/accoflowlogo.png">
                 </div>
                 <div class="lgnbtn">
-                    <button class="Login btn btn-lg btn-outline-primary" (click)="open()">Login</button>
+                    <button *ngIf="!data[0]" class="Login btn btn-lg btn-outline-primary" (click)="open()">Login</button>
                 </div>
             </div>
             

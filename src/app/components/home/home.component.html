@@ -9,6 +9,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <style>
+    .media:hover{
+        background-color: #34cfeb;
+        color: white;
+    }
+    </style>
 </head>
 
 <body>
@@ -16,7 +22,7 @@
     <div class="container mt-3">
         <h2>Top Questions</h2>
         <div style="padding-top: 15px;"class="media border p-3" *ngFor="let question of questions[0]">
-            <div class="media-body" style="display: flex;"  (click)="viewquestion()" >
+            <div class="media-body" style="display: flex;cursor: pointer;"  (click)="viewquestion()" >
                 <div class="votes" style="font-size: 20px;font-weight: bold;padding-left: 10px;">
                     <span>{{question.vote}}</span><br>
                     <span>votes</span>

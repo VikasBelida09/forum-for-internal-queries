@@ -1,18 +1,21 @@
 <html>
-    <head>
-        <title>Forum</title>
-        <style>
-        .main
-        {
+
+<head>
+    <title>Forum</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <style>
+        .main {
             width: 100%;
             height: 100%;
         }
+
         .btn-google {
             color: white;
             background-color: #ea4335;
-            }
-        .header
-        {
+        }
+
+        .header {
             margin: 0;
             display: flex;
             align-items: center;
@@ -23,15 +26,15 @@
             height: 80px;
             background-color: #33b5e5;
         }
-        .logo
-        {
+
+        .logo {
             order: 0;
             display: block;
             height: 100px;
             padding: 0%;
         }
-        .lgnbtn
-        {
+
+        .lgnbtn {
             margin-left: auto;
             order: 2;
             display: block;
@@ -39,56 +42,113 @@
             text-align: center;
             padding-right: 20px;
         }
-        .Login
-        {
+
+        .Login {
             background-color: dodgerblue;
             font-size: 20px;
             font-weight: bold;
             border-radius: 4px;
-            color:white;
+            color: white;
         }
-        .profile
-        {
+
+        .profile {
             order: 2;
             display: block;
             color: white;
             text-align: center;
-            padding-right: 20px; 
+            padding-right: 20px;
             border-radius: 50%;
         }
-        
-        img{
+
+        img {
             height: inherit;
         }
-        .ask
-        {
+
+        .ask {
             background-color: dodgerblue;
             font-size: 20px;
             font-weight: bold;
             border-radius: 4px;
-            color:white;
+            color: white;
         }
-    
-        </style>
-    </head>
-    <body>
-        <div class="main">
-            <div class="header">
-                <div class="logo">
-                    <img src="../../../assets/images/accoflowlogo.png">
-                </div>
-                <div class="lgnbtn">
-                    <button class="ask btn btn-lg btn-outline-primary" (click)="question()">Ask Question</button>
-                </div>
-                <div class="profile">
-                    <img src="{{data[0].image}}" alt="Profile"  style="width:45px;border-radius: 50%;">
-                    <span style="padding-left: 10px;">{{data[0].name}}</span>
-                    <span  style="padding-left: 20px;" (click)="logout()">Logout</span>
-                </div>
-                
-            </div>
+
+        .form-control:focus {
+            box-shadow: none;
+        }
+
+        .search {
+            background-color: white;
+            max-height: 200px;
+            width: inherit;
+            position: absolute;
+            overflow-y: scroll;
+            z-index: 0;
+            border: 1px solid;
+            border-color: #a8acbc #babdcc #c0c3d2;
+            margin-top: -25px;
+        }
+        .results
+        {
+            list-style-type: none;
+            padding: 0;
             
+        }
+        .results li
+        {
+            padding-left: 10px;
+        }
+        .results li:hover
+        {
+            background-color: #338cdf ;
+            color: #fff;
+            text-shadow: 0 -1px rgba(0, 0, 0, 0.3);
+            border-color: #2380dd #2179d5 #1a60aa;
+            background-color: #338cdf;
+            
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+            <div class="logo" (click)="homeredirect()" style="cursor: pointer;">
+                <img src="../../../assets/images/accoflowlogo.png">
+            </div>
+            <form action="" style="margin: auto; width: 40%;">
+                <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4" style="position: relative;z-index: 1;">
+                    <div class="input-group">
+                        <input type="search" placeholder="What're you searching for?" aria-describedby="button-addon1"
+                            class="form-control border-0 bg-light" style="border-radius: 40%;"
+                            (input)="onSearchChange($event.target.value)">
+                        <div class="input-group-append">
+                            <button id="button-addon1" type="submit" class="btn btn-link text-primary">
+                                <i class="fa fa-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="search" [style.display]="display">
+                    <ul  *ngFor="let question of matchquestion" class="results">
+                        <li (click)="questionclick(question)">
+                            {{question}}
+                        </li>
+                    </ul>
+                </div>
+
+            </form>
+            <div class="lgnbtn">
+                <button class="ask btn btn-lg btn-outline-primary" (click)="question()">Ask Question</button>
+            </div>
+            <div class="profile">
+                <img src="{{data[0].image}}" alt="Profile" style="width:45px;border-radius: 50%;">
+                <span style="padding-left: 10px;">{{data[0].name}}</span>
+                <span style="padding-left: 20px;cursor:pointer" (click)="logout()">Logout</span>
+            </div>
+
         </div>
-        
-    </body>
+
+    </div>
+
+</body>
+
 </html>

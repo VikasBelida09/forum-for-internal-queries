@@ -11,16 +11,16 @@ import { ActivatedRoute } from '@angular/router';
 export class AppComponent implements OnInit {
 
   public data: any = []
-  constructor(private route: ActivatedRoute,
+  constructor(
+    public session: SessionStorageService,
     private router: Router) {
-
-
+     
 
   }
   ngOnInit() {
-    this.data[0] = this.route.snapshot.data
-    // console.log(this.data[0])
-
+     this.data[0] = this.session.get("1");
+    console.log(this.data);
+    
     // if (this.data[0].token=="undefined") {
     //   this.router.navigate(['/home'])
     // }

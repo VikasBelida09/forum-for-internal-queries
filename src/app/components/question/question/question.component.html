@@ -24,9 +24,9 @@
     <div class="container mt-3">
       <div style="display:flex">
         <div style="display: flex;flex-direction: column;padding-right: 10px;">
-          <i class="fa fa-chevron-circle-up" (click)="upvote()" style="font-size:36px" [style.color]="upvotecolor"></i>
+          <i class="fa fa-chevron-circle-up" (click)="upvote(question_answer[0].qId)" style="font-size:36px" [style.color]="upvotecolor"></i>
           <span style="padding-left: 10px;font-weight: bold;">{{question_answer[0].vote}}</span>
-          <i class="fa fa-chevron-circle-down" (click)="downvote()" style="font-size:36px"
+          <i class="fa fa-chevron-circle-down" (click)="downvote(question_answer[0].qId)" style="font-size:36px"
             [style.color]="downvotecolor"></i>
         </div>
         <h2 *ngIf="question_answer[0] && question_answer[0].questionValue">{{question_answer[0].questionValue}}</h2>
@@ -38,8 +38,8 @@
     <h2>Answers</h2>
     <br>
     <div *ngFor="let answer of question_answer[0].answerList;index as i">
-      <div [attr.data-index]="i" class="media border p-3">
-        <div style="display:flex">
+      <div [attr.data-index]="i" style="margin-top: 20px;" class="media border p-3">
+        <div style="display:flex;">
           <div style="display: flex;flex-direction: column;padding-right: 10px;">
             <i class="fa fa-chevron-circle-up" (click)="answerupvote(i,answer.answerId)" style="font-size:36px"
               [style.color]="answerupvotecolor[i]"></i>
@@ -55,16 +55,13 @@
           <h4>{{answer.empName}} </h4>
           <p>{{answer.answerValue}}</p>
           
-          <div class="media p-3">
+          <div *ngFor="let comment of answer.listComments" class="media p-3">
             <img
               src="https://lh4.googleusercontent.com/-fZzK_YUIcqk/AAAAAAAAAAI/AAAAAAAAAAA/ACHi3rd12YKwCBRR_HqDImDrbWf27ZfKog/s96-c/photo.jpg"
               alt="Jane Doe" class="mr-3 mt-3 rounded-circle" style="width:45px;">
             <div class="media-body">
-              <h4>Jane Doe </h4>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua.</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua.</p>
+              <h4>{{comment.empName}}</h4>
+              <p>{{comment.commentValue}}</p>
             </div>
           </div>
         </div>
@@ -74,14 +71,14 @@
     <div class="container mt-3">
       <h2>Your Answer</h2>
       <br>
-      <form [formGroup]='AnswerForm' (ngSubmit)='onSubmit()'>
+      <form [formGroup]='AnswerForm' (ngSubmit)='onSubmit(question_answer[0].qId)'>
         <div>
           <h4>
             Description:
           </h4>
           <textarea row='50' cols='50' type="comment" formControlName='description'></textarea>
         </div>
-        <input type='submit' id='buttonId'>
+        <input type='submit'  id='buttonId'>
       </form>
     </div>
   </div>

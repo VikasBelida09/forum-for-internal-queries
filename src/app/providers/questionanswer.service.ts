@@ -12,7 +12,22 @@ export class QuestionanswerService {
     console.log("getquestion answer called");
     return this.http.get("forum/questions/"+Id);
   }
-
+  upvote(qId:number,empId:number,vote:number)
+  {
+    return this.http.post("forum/Questions/vote",{
+    qId:qId,
+    empId:empId,
+    vote:vote
+    });
+  }
+  downvote(qId:number,empId:number,vote:number)
+  {
+    return this.http.post("forum/Questions/vote",{
+    qId:qId,
+    empId:empId,
+    vote:vote
+    });
+  }
   saveanswer()
   {
 
