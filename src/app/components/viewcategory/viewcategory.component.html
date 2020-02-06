@@ -21,7 +21,7 @@
 
     <div class="container mt-3">
         <h2>Top Questions</h2>
-        <div style="padding-top: 15px;"class="media border p-3" *ngFor="let question of questions[0]">
+        <div style="padding-top: 15px;"class="media border p-3"  *ngFor="let question of questions[0]">
             <div class="media-body" style="display: flex;cursor: pointer;"  (click)="viewquestion(question.qId)" >
                 <div class="votes" style="font-size: 20px;font-weight: bold;padding-left: 10px;">
                     <span>{{question.vote}}</span><br>

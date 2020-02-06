@@ -7,13 +7,21 @@ import { HomeComponent } from './components/home/home.component';
 import { SessionService } from './providers/sessionService/session.service'
 import { AskquestionComponent } from './components/askquestion/askquestion.component';
 import { CategoryComponent } from './components/category/category.component';
+import {NotfoundComponent} from './components/notfound/notfound.component'
+import { ChatbotComponent } from './components/chatbot/chatbot.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { ViewcategoryComponent } from './components/viewcategory/viewcategory.component';
 const routes: Routes = [
   { path: '', component: IndexComponent },
-  { path: 'question', component: QuestionComponent },
+  { path: 'question/:qId', component: QuestionComponent },
+  { path: 'viewcategory/:categoryid', component: ViewcategoryComponent },
+
   { path: 'askquestion', component: AskquestionComponent },
   { path: 'home', component: HomeComponent},
   { path: 'category', component: CategoryComponent},
-  { path: '**', component: IndexComponent }];
+  { path: 'chat', component: ChatbotComponent},
+  { path: 'profile', component: ProfileComponent},
+  { path: '**', component: NotfoundComponent }];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes,{onSameUrlNavigation: 'reload'})],

@@ -8,6 +8,6 @@ export class SearchService {
 
   constructor(private http:HttpClient){ }
   generateKeywords(question:string){
-      return  this.http.post('api/getkeywords',{"question":question});
+      return  this.http.post('forum/tokenizer',{"q":question});
   }
 }

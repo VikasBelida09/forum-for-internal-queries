@@ -16,4 +16,12 @@ export class AnswerService {
       empId:empId
   })     
   }
+  addComments(empId:number,answerid:number,commentValue:String)
+  {
+    return  this.http.post('forum/addReply',{
+      empId:empId,
+      answerId:answerid,
+      commentValue:commentValue
+  })     
+  }
 }

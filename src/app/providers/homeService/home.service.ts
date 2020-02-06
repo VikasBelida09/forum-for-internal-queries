@@ -11,4 +11,9 @@ export class HomeService {
     console.log("getquestion answer called");
     return this.http.get("forum/viewques/"+Id);
   }
+  viewQuestionByCategory(Id)
+  {
+    return this.http.get("forum/category/"+Id);
+
+  }
 }

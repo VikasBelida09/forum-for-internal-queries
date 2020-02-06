@@ -22,18 +22,29 @@ export class NgbdModalContent {
   googlelogin() {
     this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID).then((userData) => {
       this.user = userData;
-     this.loginservice.addUser(321,this.user.name,this.user.email,this.user.image,this.user.idToken).subscribe();
-
-      this.session.set("1", userData);
+     this.loginservice.addUser(321,this.user.name,this.user.email,this.user.image,this.user.idToken).subscribe((resp) => {
+      this.user.empId=resp['empid'];
+      this.user.isnewEmployee=resp['isnewEmployee']
+      this.session.set("1", this.user);
       this.session.set("2", true);
-
       this.data[0] = this.session.get("1");
       console.log(this.data);
       if (this.data[0]) {
         this.activeModal.close('Close click')
-        this.router.navigate(['/home'])
+        if(this.data[0].isnewEmployee)
+        {
+          this.router.navigate(['/category'])
+
+        }
+        else{
+          this.router.navigate(['/home'])
+        }
         
       }
+     });
+
+    
+      
 
     });
   }

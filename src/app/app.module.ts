@@ -16,6 +16,10 @@ import {NgbdModalContent } from './components/indexnavigation/indexnavigation.co
 import { AskquestionComponent } from './components/askquestion/askquestion.component';
 import { startsWithPipe } from './customstart.pipes';
 import { CategoryComponent } from './components/category/category.component';
+import { NotfoundComponent } from './components/notfound/notfound.component';
+import { ChatbotComponent } from './components/chatbot/chatbot.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { ViewcategoryComponent } from './components/viewcategory/viewcategory.component';
 
 const config=new AuthServiceConfig([
   {
@@ -38,7 +42,11 @@ const config=new AuthServiceConfig([
     IndexnavigationComponent,
     AskquestionComponent,
     startsWithPipe,
-    CategoryComponent
+    CategoryComponent,
+    NotfoundComponent,
+    ChatbotComponent,
+    ProfileComponent,
+    ViewcategoryComponent
     ],
       entryComponents: [NgbdModalContent],
   imports: [

@@ -14,10 +14,10 @@ export class HomeComponent implements OnInit {
   constructor(public session: SessionStorageService,
     private router: Router,
      public homeservice:HomeService) { 
-      this.homeservice.viewQuestion(1).subscribe((details) => {
+      this.homeservice.viewQuestion(this.session.get("1").empId).subscribe((details) => {
         this.questions.push(details);
         console.log("question answer",this.questions[0])
-  
+        
       });
 
      }
@@ -29,8 +29,8 @@ export class HomeComponent implements OnInit {
       window.location.reload();
     }
   }
-  viewquestion()
+  viewquestion(qId:number)
   {
-    this.router.navigate(['/question'])
+    this.router.navigate(['/question/'+qId])
   }
 }

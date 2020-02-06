@@ -22,9 +22,10 @@
     </style>
 </head>
 
-<body>
+<body style="position:relative;">
 
-    <div class="container" style="padding-top: 20px;">
+    <div class="container" style="padding-left:20px;padding-top: 20px;">
+        <button (click)="postcategory()" [style.display]="displaydone">done</button>
         <h2>Category</h2>
         <div class="card-deck">
             <div class="card bg-primary">
