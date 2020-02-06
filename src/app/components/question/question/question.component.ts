@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { QuestionanswerService } from 'src/app/providers/questionanswer.service';
 import { FormGroup, FormControl } from '@angular/forms';
-import { SessionStorageService } from 'angular-web-storage';
+import { SessionStorageService, LocalStorageService } from 'angular-web-storage';
 import { AnswerService } from 'src/app/providers/answerService/answer.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
@@ -39,17 +39,22 @@ export class QuestionComponent implements OnInit {
   questionid: any;
   editdisplay = [];
   public data: any = [];
-  commenteditdisplay=[];
+  commenteditdisplay = [];
   constructor(public session: SessionStorageService,
+    public localstorage: LocalStorageService,
     public questionanswerservice: QuestionanswerService,
     public answerservice: AnswerService,
     private router: Router,
     private route: ActivatedRoute) {
+
+  }
+
+  ngOnInit() {
+    this.display.fill("none");
     this.vote = 0;
     this.answervote = 0;
-    this.data[0] = this.session.get("1");
-
-    console.log("question", this.data[0]);
+    this.data = this.localstorage.get("1");
+    console.log("question", this.data['empId']);
     this.route.paramMap.subscribe(paramMap => {
       this.questionid = paramMap.get('qId');
     })
@@ -58,7 +63,7 @@ export class QuestionComponent implements OnInit {
       console.log("question answer", this.question_answer[0])
 
       for (let question of this.question_answer[0].answerList) {
-        if (question.empId === this.session.get("1").empId) {
+        if (question.empId === this.localstorage.get("1").empId) {
           this.editdisplay[question.empId] = "block"
         }
         else {
@@ -67,7 +72,7 @@ export class QuestionComponent implements OnInit {
         this.answerareadisplay[question.answerId] = "none";
         this.answerdisplay[question.answerId] = "flex";
         for (let comment of question.listComments) {
-          if (comment.empId === this.session.get("1").empId) {
+          if (comment.empId === this.localstorage.get("1").empId) {
             this.commenteditdisplay[comment.empId] = "block"
           }
           else {
@@ -84,14 +89,10 @@ export class QuestionComponent implements OnInit {
     if (!this.question_answer) {
       this.router.navigate(['/notfound'])
     }
-  }
-
-  ngOnInit() {
-    this.display.fill("none");
 
   }
   upvote(id: number) {
-    this.questionanswerservice.upvote(id, this.session.get("1").empId, 1).subscribe((vote) => {
+    this.questionanswerservice.upvote(id, this.localstorage.get("1").empId, 1).subscribe((vote) => {
       this.question_answer[0].vote = vote;
 
     });
@@ -100,7 +101,7 @@ export class QuestionComponent implements OnInit {
 
   }
   downvote(id: number) {
-    this.questionanswerservice.downvote(id, this.session.get("1").empId, -1).subscribe((vote) => {
+    this.questionanswerservice.downvote(id, this.localstorage.get("1").empId, -1).subscribe((vote) => {
       this.question_answer[0].vote = vote;
 
     });
@@ -108,7 +109,7 @@ export class QuestionComponent implements OnInit {
     this.upvotecolor = "black"
   }
   answerupvote(id: number, ansid: number) {
-    this.questionanswerservice.upanswervote(ansid, this.session.get("1").empId, 1).subscribe((vote) => {
+    this.questionanswerservice.upanswervote(ansid, this.localstorage.get("1").empId, 1).subscribe((vote) => {
       this.question_answer[0].answerList[id].vote = vote;
 
     });
@@ -117,7 +118,7 @@ export class QuestionComponent implements OnInit {
 
   }
   answerdownvote(id: number, ansid: number) {
-    this.questionanswerservice.upanswervote(ansid, this.session.get("1").empId, -1).subscribe((vote) => {
+    this.questionanswerservice.upanswervote(ansid, this.localstorage.get("1").empId, -1).subscribe((vote) => {
       this.question_answer[0].answerList[id].vote = vote;
 
     });
@@ -127,7 +128,7 @@ export class QuestionComponent implements OnInit {
   }
   onSubmit(qid) {
     console.log(qid);
-    this.answerservice.addAnswer(6, this.AnswerForm.value.description, qid, this.data[0].empId).subscribe((details) => {
+    this.answerservice.addAnswer(6, this.AnswerForm.value.description, qid, this.data['empId']).subscribe((details) => {
       this.question_answer[0].answerList = details;
       console.log("question answer", this.question_answer)
       for (let question of this.question_answer[0].answerList) {
@@ -135,7 +136,7 @@ export class QuestionComponent implements OnInit {
         this.answerdisplay[question.answerId] = "flex";
 
       }
-
+      window.location.reload();
     });
     console.log("clicked");
   }
@@ -149,7 +150,7 @@ export class QuestionComponent implements OnInit {
   }
   onReply(answerId: number, index: number) {
     console.log(answerId, index);
-    this.answerservice.addComments(this.data[0].empId, answerId, this.commentForm.value.replies).subscribe((comment) => {
+    this.answerservice.addComments(this.data['empId'], answerId, this.commentForm.value.replies).subscribe((comment) => {
 
       this.question_answer[0].answerList[index].listComments = comment;
       console.log("question answer", this.question_answer)
@@ -161,7 +162,7 @@ export class QuestionComponent implements OnInit {
         }
 
       }
-
+      window.location.reload();
 
     });
   }

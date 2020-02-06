@@ -20,7 +20,7 @@ export class ProfileComponent implements OnInit {
       this.profileservice.getProfile(this.session.get("1").empId).subscribe((info) => {
         console.log(info)
         this.recentquestions=info['recentQuestions'];
-        this.recentanswers=info['recentAnswers'];
+        this.recentanswers=info['recentlyAnsweredQuestions'];
         this.profile=info['profilepic'];
         this.name=info['name'];
         this.email=info['email'];

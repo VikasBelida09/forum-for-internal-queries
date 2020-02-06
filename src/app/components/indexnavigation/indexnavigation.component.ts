@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService, SocialUser, GoogleLoginProvider } from 'angular5-social-login';
 import { Input } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import {  SessionStorageService } from 'angular-web-storage';
+import {  SessionStorageService,LocalStorageService } from 'angular-web-storage';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/providers/loginService/login.service';
 @Component({
@@ -15,6 +15,7 @@ export class NgbdModalContent {
   public data: any = []
   @Input() name;
   constructor(public session: SessionStorageService,
+    public localstorage:LocalStorageService,
     private router: Router,
     public activeModal: NgbActiveModal,
     private socialAuthService: AuthService,private loginservice:LoginService) { }
@@ -26,9 +27,12 @@ export class NgbdModalContent {
       this.user.empId=resp['empid'];
       this.user.isnewEmployee=resp['isnewEmployee']
       this.session.set("1", this.user);
+      this.localstorage.set("1",this.user);
+      console.log("data ----------->",this.localstorage.get("1"));
+
       this.session.set("2", true);
       this.data[0] = this.session.get("1");
-      console.log(this.data);
+      console.log("data",this.data);
       if (this.data[0]) {
         this.activeModal.close('Close click')
         if(this.data[0].isnewEmployee)
