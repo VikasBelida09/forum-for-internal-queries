@@ -24,6 +24,8 @@ export class NavigationComponent implements OnInit {
   description: string = "";
   categorydisplay = "none";
   subcatId=0;
+  
+
   private matchquestion: any = []
   constructor(public session: SessionStorageService,
     private router: Router,

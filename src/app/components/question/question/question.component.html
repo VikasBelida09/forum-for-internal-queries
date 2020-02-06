@@ -35,9 +35,9 @@
             [style.color]="downvotecolor" ></i>
         </div>
         <h2 *ngIf="question_answer[0] && question_answer[0].questionValue">{{question_answer[0].questionValue}}</h2>
-        <i [style.display]="commenteditdisplay[comment.empId]" 
-                  style="padding-left: 20px;padding-top: 5px;" class="fas fa-edit"  data-toggle="modal" data-target="#myModal"></i>
-                  <div class="modal fade" id="myModal">
+        <i [style.display]="questiondisplay" 
+                  style="padding-left: 20px;padding-top: 5px;" (click)="editquestion()" class="fas fa-edit"  data-toggle="modal" data-target="#myModal1"></i>
+                  <div class="modal fade" id="myModal1">
                     <div   class="modal-dialog modal-lg">
                         <div class="modal-content">
     
@@ -79,7 +79,7 @@
     
                             <!-- Modal footer -->
                             <div class="modal-footer">
-                                <button type="button" (click)="postquestion()">Post Question</button>
+                                <button type="button" (click)="postnewquestion()">Post Question</button>
                             </div>
     
                         </div>

@@ -20,4 +20,14 @@ export class QuestionService {
       },
       )                                 
   }
+
+  updateQuestion(questionId:number,questionValue:string,description:string,subcatId:number){
+    return  this.http.post<String>('forum/viewques/update',{
+        qId:questionId,
+        questionValue:questionValue,
+        description:description,
+        subcatId:subcatId
+    },
+    )                                 
+}
 }
