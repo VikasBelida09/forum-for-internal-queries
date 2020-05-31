@@ -24,7 +24,7 @@ import { ViewcategoryComponent } from './components/viewcategory/viewcategory.co
 const config=new AuthServiceConfig([
   {
      id:GoogleLoginProvider.PROVIDER_ID,
-     provider: new GoogleLoginProvider('461123909427-jm7brsvd2fijajbeq9btm44259biegjl.apps.googleusercontent.com') 
+     provider: new GoogleLoginProvider('461123909427-m0rth5hk8qnidbjkkkaajmp2gka3715o.apps.googleusercontent.com') 
   }
   ]);
   export function provideConfig(){
